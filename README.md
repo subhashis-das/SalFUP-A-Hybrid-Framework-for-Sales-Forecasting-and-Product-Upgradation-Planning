@@ -46,15 +46,40 @@ and save all results locally.
 <h2>Project Structure</h2>
 <pre>
 SalFUP/
-├── runner.ipynb
-├── data/
-│   ├── raw/
-│   └── processed/
-├── models/
-├── results/
-├── logs/
+├── main.py                     # Pipeline runner (argument-based execution)
+├── utils/
+│   └── data_preprocess.py      # Data & sentiment preprocessing
+├── scripts/
+│   ├── train_lstm.py
+│   ├── train_arima.py
+│   ├── train_sarima.py
+│   ├── train_sentitsmixer.py
+│   ├── shap_importance.py
+│   ├── apply_shap_weights.py
+│   ├── review_decline_analysis.py
+│   └── review_growth_analysis.py
+├── data/                        # Intermediate Files are stored
+│   ├── monthly_grouped.csv
+│   ├── monthly_grouped_shap.csv
+│   └── raw_reviews.csv
+├── results/                     # Results of each run are stored here
+│   ├── pre_tuning/
+│   └── post_tuning/
+├── requirements.txt
+├── runner.ipynb                 # Python code runner
 └── README.md
 </pre>
+
+<h2>Pipeline Flow</h2>
+<ol>
+    <li>Data preprocessing & sentiment extraction</li>
+    <li>Model training (LSTM, ARIMA, SARIMA, SentiTSMixer)</li>
+    <li>SHAP feature importance computation</li>
+    <li>SHAP-based feature reweighting</li>
+    <li>Post-tuning model retraining</li>
+    <li>Review analysis during sales decline</li>
+    <li>Review analysis during sales growth</li>
+</ol>
 
 <h2>Outputs</h2>
 <ul>
